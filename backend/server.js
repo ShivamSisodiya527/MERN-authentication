@@ -65,8 +65,8 @@ app.use(cors(corsOptions));
 // app.options("*", cors(corsOptions)); // ✅ Handle preflight OPTIONS request
 
 // ✅ Middlewares
-app.use(express.json());
 app.use(cookieParser());
+app.use(express.json());
 
 // ✅ DB + Routes
 import connectDB from "./config/database.js";
