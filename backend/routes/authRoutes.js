@@ -1,10 +1,10 @@
 import express from 'express';
 import userAuth from '../middleware/userAuth.js';
 import { getUserData } from '../controllers/authController.js';
-const app = express.Router();
+const router = express.Router();
 
 
 
-app.post("/data", userAuth, getUserData);
+router.post("/data", userAuth, getUserData);
 
-export default app;
+export default router;
