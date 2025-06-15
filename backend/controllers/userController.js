@@ -252,7 +252,7 @@ export const sendResetOtp = async (req, res) => {
         const mailOptions = {
             from: process.env.SENDER_EMAIL,
             to: user.email,
-            Subject: "Password reset OTP",
+            subject: "Password reset OTP",
             // text: `Your OTP for password reset is ${otp}`
             html: PASSWORD_RESET_TEMPLATE.replace("{{otp}}", otp).replace("{{email}}", user.email)
         }
