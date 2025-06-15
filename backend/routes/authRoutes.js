@@ -5,6 +5,6 @@ const app = express.Router();
 
 
 
-app.get("/data", userAuth, getUserData);
+app.post("/data", userAuth, getUserData);
 
 export default app;
