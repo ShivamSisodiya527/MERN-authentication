@@ -7,7 +7,8 @@ export const AppContent = createContext()
 
 
 export const AppContextProvider = (props) => {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = "https://mern-authentication-adj1.onrender.com"
+    console.log("backend url", backendUrl);
     const [isLoggedin, setIsLoggedIn] = useState(false);
     const [userData, setUserData] = useState(false);
     const getAuthState = async () => {
