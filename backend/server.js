@@ -86,7 +86,7 @@ import authRoute from "./routes/authRoutes.js";
 
 connectDB();
 
-app.get("/abcd", (req, res) => {
+app.get("/", (req, res) => {
     res.send("API working");
 });
 
