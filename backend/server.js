@@ -55,11 +55,22 @@ const port = process.env.PORT || 4000;
 
 // ✅ CORS Setup for Netlify Frontend
 const corsOptions = {
-    origin: "https://dazzling-brioche-6c28d1.netlify.app",  // 👈 apna frontend URL
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            // "https://dazzling-brioche-6c28d1.netlify.app",
+            "http://localhost:5173"
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 };
+
 
 app.use(cors(corsOptions));
 // app.options("*", cors(corsOptions)); // ✅ Handle preflight OPTIONS request
