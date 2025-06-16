@@ -53,33 +53,21 @@ import cookieParser from "cookie-parser";
 const app = express();
 const port = process.env.PORT || 4000;
 
-// ✅ CORS Setup for Netlify Frontend
+// ✅ CORS Configuration
 const corsOptions = {
-    origin: function (origin, callback) {
-        const allowedOrigins = [
-            "https://monumental-seahorse-30e096.netlify.app/"
-            // "http://localhost:5173"
-        ];
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "https://monumental-seahorse-30e096.netlify.app", // 👈 No trailing slash!
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // ✅ Handle preflight OPTIONS request
+app.options("*", cors(corsOptions)); // 👈 For preflight
 
-// ✅ Middlewares
 app.use(cookieParser());
 app.use(express.json());
 
-// ✅ DB + Routes
+// ✅ DB & Routes
 import connectDB from "./config/database.js";
 import userRoute from "./routes/userRoutes.js";
 import authRoute from "./routes/authRoutes.js";
@@ -93,7 +81,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
 
-// ✅ Start server
+// ✅ Start Server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
