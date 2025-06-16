@@ -57,8 +57,8 @@ const port = process.env.PORT || 4000;
 const corsOptions = {
     origin: function (origin, callback) {
         const allowedOrigins = [
-            "https://dazzling-brioche-6c28d1.netlify.app",
-            "http://localhost:5173"
+            "https://monumental-seahorse-30e096.netlify.app/"
+            // "http://localhost:5173"
         ];
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
