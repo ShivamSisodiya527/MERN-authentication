@@ -27,12 +27,13 @@ export const register = async (req, res) => {
         })
         await user.save();
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-        res.cookie('token', token, {
+        res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: process.env.NODE_ENV === "production",  // <-- ✅
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",  // <-- ✅
             maxAge: 24 * 60 * 60 * 1000
         });
+
         // sending welcome email
         const mailOptions = {
             from: process.env.SENDER_EMAIL,
@@ -78,12 +79,13 @@ export const login = async (req, res) => {
             })
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-        res.cookie('token', token, {
+        res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "none",
+            secure: process.env.NODE_ENV === "production",  // <-- ✅
+            sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",  // <-- ✅
             maxAge: 24 * 60 * 60 * 1000
-        })
+        });
+
         return res.json({
             success: true,
             message: "User login successfully"

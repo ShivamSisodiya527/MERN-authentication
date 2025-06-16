@@ -53,16 +53,19 @@ import cookieParser from "cookie-parser";
 const app = express();
 const port = process.env.PORT || 4000;
 
+// ⭐ ADD THIS LINE
+app.set("trust proxy", 1); // ✅ Required when using secure cookies behind a proxy like Render
+
 // ✅ CORS Configuration
 const corsOptions = {
-    origin: "https://monumental-seahorse-30e096.netlify.app", // 👈 No trailing slash!
+    origin: "https://monumental-seahorse-30e096.netlify.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
 };
 
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // 👈 For preflight
+app.options("*", cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -81,7 +84,6 @@ app.get("/", (req, res) => {
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
 
-// ✅ Start Server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
