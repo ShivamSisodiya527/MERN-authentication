@@ -17,17 +17,14 @@ const Login = () => {
         try {
             e.preventDefault();
             if (state === 'Sign Up') {
-                const { data } = await axios.post(backendUrl + '/user/register',
-                    {
-                        name,
-                        email,
-                        password
-                    },
+                const { data } = await axios.post(
+                    backendUrl + "/user/register",
+                    { name, email, password },
                     { withCredentials: true }
                 );
                 if (data.success) {
                     setIsLoggedIn(true);
-                    getUserData(); a
+                    getUserData();
                     navigate('/');
                 } else {
                     toast.error(data.message);
@@ -91,9 +88,9 @@ const Login = () => {
                 </form>
                 {state === 'Sign Up' ? (<p className='text-gray-400 text-center text-sm mt-4'>Already  have an account?{" "}
                     <span onClick={() => setState('Login')} className='text-blue-400 cursor-pointer underline'>Login here</span>
-                    `</p>) : (<p className='text-gray-400 text-center text-sm mt-4'>Don't have an account?{" "}
-                        <span onClick={() => setState('Sign Up')} className='text-blue-400 cursor-pointer underline'>Sign Up</span>
-                        `</p>)}
+                </p>) : (<p className='text-gray-400 text-center text-sm mt-4'>Don't have an account?{" "}
+                    <span onClick={() => setState('Sign Up')} className='text-blue-400 cursor-pointer underline'>Sign Up</span>
+                    `</p>)}
 
 
             </div>
