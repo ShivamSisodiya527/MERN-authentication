@@ -55,7 +55,7 @@ const port = process.env.PORT || 4000;
 
 // ✅ CORS Configuration
 const corsOptions = {
-    origin: "https://monumental-seahorse-30e096.netlify.app/", // 👈 No trailing slash!
+    origin: "https://monumental-seahorse-30e096.netlify.app", // 👈 No trailing slash!
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
