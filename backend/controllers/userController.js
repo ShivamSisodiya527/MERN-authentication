@@ -27,12 +27,19 @@ export const register = async (req, res) => {
         })
         await user.save();
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        // res.cookie("token", token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === "production",  // ✅ true in production
+        //     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+        //     maxAge: 24 * 60 * 60 * 1000,
+        // });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",  // ✅ true in production
-            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+            secure: true,         // ✅ true in production
+            sameSite: "None",     // ✅ required when cross-origin
             maxAge: 24 * 60 * 60 * 1000,
         });
+
 
 
         console.log("token sent register");
@@ -82,12 +89,19 @@ export const login = async (req, res) => {
             })
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+        // res.cookie("token", token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === "production",  // ✅ true in production
+        //     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+        //     maxAge: 24 * 60 * 60 * 1000,
+        // });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",  // ✅ true in production
-            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+            secure: true,         // ✅ true in production
+            sameSite: "None",     // ✅ required when cross-origin
             maxAge: 24 * 60 * 60 * 1000,
         });
+
 
 
         console.log("token sent from login");
