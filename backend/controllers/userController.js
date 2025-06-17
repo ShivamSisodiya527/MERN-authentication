@@ -84,11 +84,10 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,           // 🔐 Only works over HTTPS (Render ✅)
-            sameSite: "None",       // 🌐 Required for cross-site cookies
-            maxAge: 24 * 60 * 60 * 1000, // 1 day
+            secure: process.env.NODE_ENV === "production",  // ✅ true in production
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+            maxAge: 24 * 60 * 60 * 1000,
         });
-
 
 
         console.log("token sent from login");
