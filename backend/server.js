@@ -58,7 +58,7 @@ app.set("trust proxy", 1); // ✅ Required when using secure cookies behind a pr
 
 // ✅ CORS Configuration
 const corsOptions = {
-    origin: "https://monumental-seahorse-30e096.netlify.app",
+    origin: "https://mern-authentication-frontend-ks21.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
