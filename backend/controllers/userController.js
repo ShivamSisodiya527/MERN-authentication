@@ -29,10 +29,11 @@ export const register = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,  // <-- ✅
-            sameSite: "None",
+            secure: false,        // ⚠️ secure false on localhost
+            sameSite: "Lax",      // ✅ Lax is fine for localhost
             maxAge: 24 * 60 * 60 * 1000
         });
+
 
         console.log("token sent register");
         // sending welcome email
@@ -83,10 +84,12 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "None",
+            secure: false,        // ⚠️ secure false on localhost
+            sameSite: "Lax",      // ✅ Lax is fine for localhost
             maxAge: 24 * 60 * 60 * 1000
         });
+
+
         console.log("token sent from login");
         return res.json({
             success: true,

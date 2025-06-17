@@ -54,18 +54,19 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // ⭐ ADD THIS LINE
-app.set("trust proxy", 1); // ✅ Required when using secure cookies behind a proxy like Render
+// app.set("trust proxy", 1); // ✅ Required when using secure cookies behind a proxy like Render
 
 // ✅ CORS Configuration
 const corsOptions = {
-    origin: "https://mern-authentication-frontend-ks21.onrender.com",
+    origin: ["http://localhost:5173", "https://mern-authentication-frontend-ks21.onrender.com"],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    // methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    // allowedHeaders: ["Content-Type", "Authorization"]
 };
 
+
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+// app.options("*", cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
