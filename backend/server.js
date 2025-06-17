@@ -85,6 +85,11 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRoute);
 app.use("/auth", authRoute);
+app.get("/check-token", (req, res) => {
+    console.log("Cookies from frontend:", req.cookies);
+    res.send(req.cookies);
+});
+
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
