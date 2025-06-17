@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import logo from "/src/assets/logo.svg";
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { AppContent } from '../context/AppContext';
+import { AppContextProvider } from '../context/AppContext';
 import axios from 'axios';
 
 const EmailVerify = () => {
-    const { backendUrl, isLoggedin, userData, getUserData } = useContext(AppContent);
+    const { backendUrl, isLoggedin, userData, getUserData } = useContext(AppContextProvider);
     const navigate = useNavigate();
     const inputRefs = React.useRef([]);
     const [isOtpVerified, setIsOtpVerified] = useState(false);
@@ -55,7 +55,7 @@ const EmailVerify = () => {
     };
 
     useEffect(() => {
-        isLoggedin && userData && userData.isAccountVerified && navigate('/');
+        isLoggedin && userData && userData?.isAccountVerified && navigate('/');
     }, [isLoggedin, userData]);
 
     return (

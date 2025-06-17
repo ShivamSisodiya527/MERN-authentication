@@ -5,9 +5,9 @@ import Login from './Pages/Login';
 import EmailVerify from './Pages/EmailVerify';
 import ResetPassword from './Pages/ResetPassword';
 import { ToastContainer } from 'react-toastify';
-import { AppContent } from './context/AppContext';
+import { AppContext } from './context/AppContext.jsx';
 const App = () => {
-  const { getUserData } = useContext(AppContent);
+  const { getUserData } = useContext(AppContext);
   useEffect(() => {
     getUserData();
   }, [])

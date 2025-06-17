@@ -2,12 +2,12 @@ import React, { useContext } from 'react'
 import image from '/src/assets/logo.png'
 import { FaArrowRight } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
-import { AppContent } from '../context/AppContext.jsx'
+import { AppContext } from '../context/AppContext.jsx'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 const Navbar = () => {
     const navigate = useNavigate();
-    const { userData, backendUrl, setUserData, setIsLoggedIn } = useContext(AppContent);
+    const { userData, backendUrl, setUserData, setIsLoggedIn } = useContext(AppContext);
 
     const verificationOtp = async () => {
         try {

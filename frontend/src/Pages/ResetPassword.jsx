@@ -3,11 +3,11 @@ import logo from "/src/assets/logo.svg";
 import mailIcon from "/src/assets/mail_icon.svg"
 import lockIcon from "/src/assets/lock_icon.svg"
 import { useNavigate } from 'react-router-dom';
-import { AppContent } from '../context/AppContext';
+import { AppContextProvider } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 const ResetPassword = () => {
-    const { backendUrl } = useContext(AppContent)
+    const { backendUrl } = useContext(AppContextProvider)
 
     const [email, setEmail] = useState('')
     const navigate = useNavigate()

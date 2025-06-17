@@ -3,11 +3,11 @@ import personIcon from "/src/assets/person_icon.svg"
 import mailIcon from "/src/assets/mail_icon.svg"
 import lockIcon from "/src/assets/lock_icon.svg"
 import { useNavigate } from "react-router-dom";
-import { AppContent } from '../context/AppContext';
+import { AppContext, AppContextProvider } from '../context/AppContext.jsx';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 const Login = () => {
-    const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContent);
+    const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContext);
     const navigate = useNavigate();
     const [state, setState] = useState('Sign Up');
     const [name, setName] = useState('');

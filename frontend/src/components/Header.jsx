@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import headerimage from "/src/assets/header_img.png"
 import handwave from "/src/assets/hand_wave.png"
-import { AppContent } from '../context/AppContext'
+import { AppContext, AppContextProvider } from '../context/AppContext.jsx'
 const Header = () => {
-    const { userData } = useContext(AppContent);
+    const { userData } = useContext(AppContext);
     return (
 
         <div className='flex flex-col items-center mt-20 px-4 text-center
