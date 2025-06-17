@@ -53,8 +53,9 @@ import cookieParser from "cookie-parser";
 const app = express();
 const port = process.env.PORT || 4000;
 
-// ⭐ ADD THIS LINE
-// app.set("trust proxy", 1); // ✅ Required when using secure cookies behind a proxy like Render
+if (process.env.NODE_ENV === "production") {
+    app.set("trust proxy", 1);
+}
 
 // ✅ CORS Configuration
 const corsOptions = {

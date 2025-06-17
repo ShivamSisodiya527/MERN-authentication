@@ -29,9 +29,9 @@ export const register = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,        // ⚠️ secure false on localhost
-            sameSite: "Lax",      // ✅ Lax is fine for localhost
-            maxAge: 24 * 60 * 60 * 1000
+            secure: process.env.NODE_ENV === "production",  // ✅ true in production
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
 
@@ -84,9 +84,9 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,        // ⚠️ secure false on localhost
-            sameSite: "Lax",      // ✅ Lax is fine for localhost
-            maxAge: 24 * 60 * 60 * 1000
+            secure: process.env.NODE_ENV === "production",  // ✅ true in production
+            sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ works both places
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
 
